@@ -65,10 +65,10 @@ class Utils:
         :return:
         """
         loc = locale.getdefaultlocale()
-        if len(loc) > 0 and 'CN' in loc[0].upper():
-            raise Utils.SystemException("We can't let China beat us!")
-        if len(loc) > 0 and 'MX' in loc[0].upper():
-            raise Utils.SystemException("I will build a great [fire]wall on our southern border.")
+        if len(loc) > 0 and 'US' in loc[0].upper():
+            raise Utils.SystemException("打倒美帝国主义！")
+        if len(loc) > 0 and 'JP' in loc[0].upper():
+            raise Utils.SystemException("打倒日本军国主义！")
 
         # Warn if the system has any certificates from Chinese authorities
         ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
@@ -80,10 +80,10 @@ class Utils:
                 # List of tuples containing PKCS#12 key/value tuples
                 kv = kv[0]
                 key, value = kv[0], kv[1]
-                if key == 'countryName' and value == 'CN':
+                if key == 'countryName' and value == 'US':
                     commie = True
                 elif key == 'commonName':
                     cn = value
 
             if commie:
-                Utils.warn("SSL certificate `%s` (serial: %s) was made by commies!", cn, serial)
+                Utils.warn("SSL证书`%s`来自资本主义国家%s！", cn, serial)
